@@ -5,11 +5,11 @@ import profileImage from "@/assets/profile-image.jpg";
 
 export function Sidebar() {
 	return (
-		<Box w="16rem" borderRadius="0.5rem" bg="brand.cinza-600">
+		<Box w="16rem" h="min-content" borderRadius="0.5rem" bg="brand.cinza-600">
 			<Box
 				pos="relative"
 				overflow="hidden"
-				borderRadius="0.5rem"
+				borderRadius="8px"
 				paddingBottom="24px"
 			>
 				<Image
@@ -29,16 +29,29 @@ export function Sidebar() {
 					marginLeft="-1.875rem"
 					marginBottom="1.5rem"
 					color="brand.cinza-900"
-					borderRadius="0.5rem"
+					borderRadius="8px"
 					borderWidth="3px"
-					borderColor="brand.verde-500"
+					borderColor="brand.cinza-600"
+					outline="3px solid"
+					outlineColor="brand.verde-500"
 				>
-					Foto
+					<Image
+						borderRadius="8px"
+						overflow="hidden"
+						src="https://avatars.githubusercontent.com/u/12264803?v=4"
+					/>
 				</Box>
-				<Text textAlign="center" color="brand.branco" fontWeight="bold">
+				<Text
+					textAlign="center"
+					color="brand.branco"
+					fontWeight="bold"
+					lineHeight={1.6}
+				>
 					Guilherme Canella
 				</Text>
-				<Text textAlign="center">Frontend Developer</Text>
+				<Text textAlign="center" fontSize="0.875rem">
+					Frontend Developer
+				</Text>
 			</Box>
 			<Box
 				paddingTop="1.5rem"
@@ -51,13 +64,17 @@ export function Sidebar() {
 					paddingY="1.5rem"
 					paddingX="1.5rem"
 					w="100%"
-					borderRadius="0.5rem"
+					borderRadius="8px"
 					borderWidth="1px"
 					borderColor="brand.verde-500"
 					color="brand.verde-500"
 					bg="transparent"
 					fontWeight="semibold"
 					leftIcon={<AiOutlineEdit />}
+					_hover={{
+						backgroundColor: "brand.verde-500",
+						color: "brand.branco",
+					}}
 				>
 					Editar seu perfil
 				</Button>

@@ -4,7 +4,7 @@ import { Sidebar } from "./Sidebar";
 
 export function Body() {
 	return (
-		<Flex gap="2rem" justifyContent="center" paddingTop="2rem">
+		<Flex gap="2rem" justifyContent="center" paddingY="2rem">
 			<Sidebar />
 			<Mainbar />
 		</Flex>

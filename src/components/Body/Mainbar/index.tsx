@@ -1,9 +1,12 @@
-import { Box } from "@chakra-ui/react";
+import { Flex } from "@chakra-ui/react";
+
+import { Post } from "../Post";
 
 export function Mainbar() {
 	return (
-		<Box w="52rem" outline="1px solid blue">
-			Main bar
-		</Box>
+		<Flex flexDirection="column" gap="2rem">
+			<Post />
+			<Post />
+		</Flex>
 	);
 }
