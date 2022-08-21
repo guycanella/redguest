@@ -6,6 +6,8 @@ import {
 	Text,
 	Textarea,
 	Link,
+	FormControl,
+	FormLabel,
 } from "@chakra-ui/react";
 
 export function Post() {
@@ -62,24 +64,27 @@ export function Post() {
 					</Text>
 				</Text>
 			</Box>
-			<Box paddingTop="1.5rem">
-				<Text marginBottom="1rem" fontWeight="bold">
+			<FormControl paddingTop="1.5rem">
+				<FormLabel marginBottom="1rem" fontWeight="bold">
 					Deixe seu feedback
-				</Text>
+				</FormLabel>
 				<Textarea
 					bg="brand.cinza-900"
 					borderColor="brand.verde-500"
 					marginBottom="1rem"
+					placeholder="Deixe um comentário"
+					resize="none"
 				></Textarea>
 				<Button
 					bg="brand.verde-500"
 					color="brand.branco"
 					paddingX="1.5rem"
 					paddingY="1.5rem"
+					type="submit"
 				>
 					Publicar
 				</Button>
-			</Box>
+			</FormControl>
 		</Box>
 	);
 }
