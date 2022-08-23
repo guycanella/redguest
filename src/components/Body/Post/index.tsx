@@ -9,8 +9,17 @@ import {
 	FormControl,
 	FormLabel,
 } from "@chakra-ui/react";
+import { useState } from "react";
+
+import { Comment } from "@/components/Body/Comment";
 
 export function Post() {
+	const [isPublishButton, setIsPublishButton] = useState(false);
+
+	const handlePublishButton = () => {
+		setIsPublishButton(!isPublishButton);
+	};
+
 	return (
 		<Box w="52rem" borderRadius="8px" bg="brand.cinza-600" padding="2.5rem">
 			<Flex justifyContent="space-between">
@@ -29,7 +38,9 @@ export function Post() {
 						<Image src="https://avatars.githubusercontent.com/u/12264803?v=4" />
 					</Box>
 					<Text>
-						Carlos Silva
+						<Text fontWeight="bold" color="brand.branco" display="inline">
+							Carlos Silva
+						</Text>
 						<br />
 						Frontend Dev
 					</Text>
@@ -74,17 +85,22 @@ export function Post() {
 					marginBottom="1rem"
 					placeholder="Deixe um comentário"
 					resize="none"
-				></Textarea>
-				<Button
-					bg="brand.verde-500"
-					color="brand.branco"
-					paddingX="1.5rem"
-					paddingY="1.5rem"
-					type="submit"
-				>
-					Publicar
-				</Button>
+					onFocus={handlePublishButton}
+				/>
+				<Box display={isPublishButton ? "block" : "none"}>
+					<Button
+						bg="brand.verde-500"
+						color="brand.branco"
+						paddingX="1.5rem"
+						paddingY="1.5rem"
+						marginBottom="1rem"
+						type="submit"
+					>
+						Publicar
+					</Button>
+				</Box>
 			</FormControl>
+			<Comment />
 		</Box>
 	);
 }
