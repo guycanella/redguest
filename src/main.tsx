@@ -20,6 +20,15 @@ const colors = {
 	},
 };
 
+const breakpoints = {
+	pp: "375px",
+	p: "425px",
+	m: "768px",
+	g: "1028px",
+	gg: "1280px",
+	xg: "1366px",
+};
+
 const theme = extendTheme({
 	styles: {
 		global: {
@@ -27,6 +36,9 @@ const theme = extendTheme({
 				margin: "0",
 				padding: "0",
 				boxSizing: "border-box",
+			},
+			html: {
+				w: "100vw",
 			},
 			body: {
 				bg: "#121214",
@@ -40,6 +52,7 @@ const theme = extendTheme({
 		},
 	},
 	colors,
+	breakpoints,
 });
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(

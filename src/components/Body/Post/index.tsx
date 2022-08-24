@@ -12,6 +12,7 @@ import {
 import { useState } from "react";
 
 import { Comment } from "@/components/Body/Comment";
+import { Avatar } from "../Avatar";
 
 export function Post() {
 	const [isPublishButton, setIsPublishButton] = useState(false);
@@ -21,23 +22,20 @@ export function Post() {
 	};
 
 	return (
-		<Box w="52rem" borderRadius="8px" bg="brand.cinza-600" padding="2.5rem">
+		<Box
+			w={{ pp: "100%", gg: "52rem" }}
+			borderRadius="8px"
+			bg="brand.cinza-600"
+			padding={{ pp: "1rem", gg: "2.5rem" }}
+		>
 			<Flex justifyContent="space-between">
 				<Flex gap="1rem">
-					<Box
-						w="3.75rem"
-						h="3.75rem"
-						bg="brand.cinza-100"
-						color="brand.cinza-900"
-						borderRadius="8px"
-						borderWidth="3px"
-						borderColor="brand.cinza-600"
-						outline="3px solid"
-						outlineColor="brand.verde-500"
-					>
-						<Image src="https://avatars.githubusercontent.com/u/12264803?v=4" />
-					</Box>
-					<Text>
+					<Avatar
+						display="relative"
+						size={3.75}
+						source="https://avatars.githubusercontent.com/u/12264803?v=4"
+					/>
+					<Text fontSize={{ pp: "0.875rem", gg: "1rem" }}>
 						<Text fontWeight="bold" color="brand.branco" display="inline">
 							Carlos Silva
 						</Text>
@@ -45,7 +43,7 @@ export function Post() {
 						Frontend Dev
 					</Text>
 				</Flex>
-				<Flex dir="column">
+				<Flex dir="column" fontSize={{ pp: "0.875rem", gg: "1rem" }}>
 					<time title="21 de agosto às 17:22" dateTime="2022-08-21 17:22:30">
 						Publicado há 1h
 					</time>
@@ -56,7 +54,7 @@ export function Post() {
 				borderBottomWidth="1px"
 				borderBottomColor="brand.cinza-400"
 			>
-				<Text>
+				<Text fontSize={{ pp: "0.875rem", gg: "1rem" }}>
 					Hey guys 👋
 					<br />
 					<br />
@@ -86,6 +84,7 @@ export function Post() {
 					placeholder="Deixe um comentário"
 					resize="none"
 					onFocus={handlePublishButton}
+					fontSize={{ pp: "0.875rem", gg: "1rem" }}
 				/>
 				<Box display={isPublishButton ? "block" : "none"}>
 					<Button

@@ -8,7 +8,6 @@ export function Header() {
 			bg="brand.cinza-600"
 			color="#fff"
 			verticalAlign="middle"
-			maxW="100vw"
 			padding="1.25rem 0"
 			fontWeight={900}
 			letterSpacing="widest"
