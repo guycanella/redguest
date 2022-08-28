@@ -2,7 +2,6 @@ import {
 	Box,
 	Button,
 	Flex,
-	Image,
 	Text,
 	Textarea,
 	Link,
@@ -10,12 +9,41 @@ import {
 	FormLabel,
 } from "@chakra-ui/react";
 import { useState } from "react";
+import { format, formatDistanceToNow } from "date-fns";
+import ptBR from "date-fns/locale/pt-BR";
 
 import { Comment } from "@/components/Body/Comment";
 import { Avatar } from "../Avatar";
 
-export function Post() {
+type PostProps = {
+	id: number;
+	author: {
+		avatarUrl: string;
+		name: string;
+		role: string;
+	};
+	content: Array<{
+		type: string;
+		content: string;
+	}>;
+	publishedAt: Date;
+};
+
+export function Post({ post }: { post: PostProps }) {
 	const [isPublishButton, setIsPublishButton] = useState(false);
+
+	const publishedDateFormatted = format(
+		post?.publishedAt,
+		"d 'de' LLLL 'às' HH:mm'h'",
+		{
+			locale: ptBR,
+		}
+	);
+
+	const publishedDateRelativeToNow = formatDistanceToNow(post?.publishedAt, {
+		locale: ptBR,
+		addSuffix: true,
+	});
 
 	const handlePublishButton = () => {
 		setIsPublishButton(!isPublishButton);
@@ -33,19 +61,22 @@ export function Post() {
 					<Avatar
 						display="relative"
 						size={3.75}
-						source="https://avatars.githubusercontent.com/u/12264803?v=4"
+						source={post?.author?.avatarUrl}
 					/>
 					<Text fontSize={{ pp: "0.875rem", gg: "1rem" }}>
-						<Text fontWeight="bold" color="brand.branco" display="inline">
-							Carlos Silva
-						</Text>
+						<span style={{ fontWeight: "bold", color: "#fff" }}>
+							{post?.author?.name}
+						</span>
 						<br />
-						Frontend Dev
+						{post?.author?.role}
 					</Text>
 				</Flex>
 				<Flex dir="column" fontSize={{ pp: "0.875rem", gg: "1rem" }}>
-					<time title="21 de agosto às 17:22" dateTime="2022-08-21 17:22:30">
-						Publicado há 1h
+					<time
+						title={publishedDateFormatted}
+						dateTime={post?.publishedAt.toISOString()}
+					>
+						Publicado {publishedDateRelativeToNow}
 					</time>
 				</Flex>
 			</Flex>
@@ -54,24 +85,25 @@ export function Post() {
 				borderBottomWidth="1px"
 				borderBottomColor="brand.cinza-400"
 			>
-				<Text fontSize={{ pp: "0.875rem", gg: "1rem" }}>
-					Hey guys 👋
-					<br />
-					<br />
-					I just uploaded one more project in my portfolio. It is a project
-					which I developed during an e-commerce using Typescript and NextJS.
-					The name of the project is RapidStore 🚀
-					<br />
-					<br />
-					<Link fontWeight="bold" color="brand.verde-500">
-						👉 guycanella.dev/rapidstore
-					</Link>
-					<br />
-					<br />
-					<Text color="brand.verde-500" fontWeight="bold">
-						#newproject #nextjs #typescript
-					</Text>
-				</Text>
+				{post?.content.map((cont, idx) => {
+					return cont?.type === "paragraph" ? (
+						<Text
+							key={`paragraph-${idx}`}
+							fontSize={{ pp: "0.875rem", gg: "1rem" }}
+							marginBottom="1rem"
+						>
+							{cont?.content}
+						</Text>
+					) : (
+						<Link
+							key={`paragraph-${idx}`}
+							fontWeight="bold"
+							color="brand.verde-500"
+						>
+							{cont?.content}
+						</Link>
+					);
+				})}
 			</Box>
 			<FormControl paddingTop="1.5rem">
 				<FormLabel marginBottom="1rem" fontWeight="bold">

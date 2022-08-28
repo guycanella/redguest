@@ -34,10 +34,7 @@ export function Comment() {
 							fontSize={{ pp: "0.85rem", gg: "0.875rem" }}
 							fontWeight="bold"
 						>
-							Guilherme Canella{" "}
-							<Text display="inline" color="brand.cinza-400">
-								(você)
-							</Text>
+							Guilherme Canella <span style={{ color: "#8d8d99" }}>(você)</span>
 						</Text>
 						<CgTrash
 							size={handleSize(window.screen.width, "trash")}
